@@ -1,40 +1,27 @@
-import { ApolloServer, makeExecutableSchema } from "apollo-server";
-import models from './models';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server'
+import models from './models'
 
-const typeDefs = `
-  type Hello {
-    message: String!
-  }
+import resolvers from './graphql/resolvers'
+import typeDefs from './graphql/types'
 
-  type Query {
-    sayHello(name: String!): Hello
-  }
-`;
-
-const resolvers = {
-  Query: {
-    sayHello(_: any, args: any): any {
-      return {
-        message: `Hello ${args.name || "world"}`
-      }
-    }
-  }
-}
+import {$server} from '../config'
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 })
 const apolloServer = new ApolloServer({
   schema,
   context: {
-    models,
+    models
   }
 })
 
-const alter = true;
-const force = false;
+const alter = true
+const force = false
 
-models.sequelize.sync({alter, force}).then(() => {
-  apolloServer.listen(5000).then(({url}) => console.log(`Running on ${url}`));
+models.sequelize.sync({ alter, force }).then(() => {
+  apolloServer
+    .listen($server.port)
+    .then(({ url }) => console.log(`Running on ${url}`))
 })

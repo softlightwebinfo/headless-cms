@@ -1,4 +1,4 @@
-import { App, User } from './types';
+import { App, User } from './types'
 
 export interface IDataTypes {
   UUID: string;
@@ -18,11 +18,17 @@ export interface IApp extends App {
   updatedAt: Date;
 }
 
+export interface ICreateAppInput extends App {
+}
+
 export interface IUser extends User {
   id: string;
   token: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ICreateUserInput extends User {
 }
 
 export interface IModels {
