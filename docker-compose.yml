@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  headless-cms-postgres:
+    container_name: headless-cms-postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: cms
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: contentpi
+      PGDATA: /data/postgres
+    volumes:
+      - headless-postgres:/data/postgres
+    ports:
+      - "5470:5432"
+    networks:
+      - headless-cms
+    restart: unless-stopped
+
+networks:
+  headless-cms:
+    driver: bridge
+
+volumes:
+  headless-postgres:
+  pgadmin:

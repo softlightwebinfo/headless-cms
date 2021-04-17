@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": 5000
+  },
+  "db": {
+    "dialect": "postgres",
+    "port": 5470,
+    "host": "localhost",
+    "database": "contentpi",
+    "username": "cms",
+    "password": "12345678"
+  },
+  "security": {
+    "secretKey": "C0nT3nrtP1",
+    "expiresIn": "7d"
+  }
+}
